@@ -27,6 +27,29 @@ public class HomePage extends BasePage{
     @FindBy(className = "btnAdminCities")
     private WebElement adminCities;
 
+    @FindBy(className = "btnLocaleActivation")
+    private WebElement localeButton;
+
+    @FindBy(className = "btnES")
+    private WebElement localeESButton;
+
+    @FindBy(className = "btnEN")
+    private WebElement localeENButton;
+
+    @FindBy(className = "btnFR")
+    private WebElement localeFRButton;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
+    private WebElement messageES;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
+    private WebElement messageEN;
+
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
+    private WebElement messageFR;
+
+
+
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
     }
@@ -45,6 +68,31 @@ public class HomePage extends BasePage{
     }
     public void selectAdmin() {
         adminCities.click();
+    }
+
+    public void selectLocaleES () {
+        localeButton.click();
+        localeESButton.click();
+    }
+
+    public String getMessageES () {
+        return messageES.getText();
+    }
+
+    public void selectLocaleEN () {
+        localeButton.click();
+        localeENButton.click();
+    }
+    public String getMessageEN () {
+        return messageEN.getText();
+    }
+    public void selectLocaleFR () {
+        localeButton.click();
+        localeFRButton.click();
+    }
+
+    public String getMessageFR () {
+        return messageFR.getText();
     }
 
 
