@@ -7,41 +7,44 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import pages.AdminPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SignUpPage;
 
 import java.time.Duration;
 
-public  abstract class BaseTest {
+public abstract class BaseTest {
 
-        protected WebDriver driver;
-        protected WebDriverWait driverWait;
-        protected LoginPage loginPage;
-        protected HomePage homePage;
-        protected Faker faker;
-        protected SignUpPage signUpPage;
+    protected WebDriver driver;
+    protected WebDriverWait driverWait;
+    protected LoginPage loginPage;
+    protected HomePage homePage;
+    protected AdminPage adminPage;
+    protected Faker faker = new Faker();
+    protected SignUpPage signUpPage;
 
-        @BeforeClass
-        public void beforeClass() {
-            System.setProperty("webdriver.chrome.driver", "D:\\New folder\\chromedriver_win32\\chromedriver.exe");
-            driver = new ChromeDriver();
-            driverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
-            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-            loginPage = new LoginPage(driver, driverWait);
-            homePage = new HomePage(driver, driverWait);
-            signUpPage = new SignUpPage(driver, driverWait);
-            faker = new Faker();
-        }
+    @BeforeClass
+    public void beforeClass() {
+        System.setProperty("webdriver.chrome.driver", "D:\\New folder\\chromedriver_win32\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        loginPage = new LoginPage(driver, driverWait);
+        homePage = new HomePage(driver, driverWait);
+        adminPage = new AdminPage(driver, driverWait);
+        signUpPage = new SignUpPage(driver, driverWait);
 
-        @BeforeMethod
-        public void beforeMethod() {
-            driver.get("https://vue-demo.daniel-avellaneda.com");
-
-        }
-
-        @AfterClass
-        public void afterClass() {
-            driver.quit();
-        }
     }
+
+    @BeforeMethod
+    public void beforeMethod() {
+        driver.get("https://vue-demo.daniel-avellaneda.com");
+
+    }
+
+    @AfterClass
+    public void afterClass() {
+        driver.quit();
+    }
+}

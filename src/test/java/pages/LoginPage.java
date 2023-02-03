@@ -65,8 +65,6 @@ public class LoginPage extends BasePage {
         return message.getText();
     }
 
-
-
 }
 
 
