@@ -7,10 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import pages.AdminPage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.SignUpPage;
+import pages.*;
 
 import java.time.Duration;
 
@@ -24,6 +21,8 @@ public abstract class BaseTest {
     protected Faker faker = new Faker();
     protected SignUpPage signUpPage;
 
+    protected ProfilePage profilePage;
+
     @BeforeClass
     public void beforeClass() {
         System.setProperty("webdriver.chrome.driver", "D:\\New folder\\chromedriver_win32\\chromedriver.exe");
@@ -34,6 +33,7 @@ public abstract class BaseTest {
         homePage = new HomePage(driver, driverWait);
         adminPage = new AdminPage(driver, driverWait);
         signUpPage = new SignUpPage(driver, driverWait);
+        profilePage = new ProfilePage(driver,driverWait);
 
     }
 

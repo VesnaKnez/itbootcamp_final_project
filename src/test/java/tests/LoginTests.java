@@ -21,6 +21,8 @@ public class LoginTests extends BaseTest {
     public void visitsТheLoginPage() {
 
         String actualLink = driver.getCurrentUrl();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.name("email")));
         Assert.assertTrue(actualLink.contains("/login"));
 
         driver.navigate().refresh();
@@ -42,8 +44,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void displaysErrorsWhenUserDoesNotExist() {
         loginPage.fakerLogin();
-        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")));
+
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]/ul/li")));
 
         Assert.assertEquals(loginPage.getMessage(), "User does not exists");
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
@@ -61,8 +63,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginT() {
         loginPage.login("admin@admin.com", "12345");
-        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[1]")));
+
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[1]")));
 
         Assert.assertTrue(driver.getCurrentUrl().contains("/home"));
 
@@ -70,20 +72,20 @@ public class LoginTests extends BaseTest {
 
     @Test
     public void logout() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("hidden-sm-and-down")));
+
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("hidden-sm-and-down")));
 
         Assert.assertTrue(homePage.getLogoutButton().isDisplayed());
 
-
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-btn--is-elevated")));
         String actualLink = driver.getCurrentUrl();
+        homePage.logout();
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")));
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
 
         driver.navigate().refresh();
 
         driver.get("https://vue-demo.daniel-avellaneda.com/home");
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-btn--is-elevated")));
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("v-btn--is-elevated")));
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
 
 

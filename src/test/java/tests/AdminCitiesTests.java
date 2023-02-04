@@ -62,7 +62,6 @@ public class AdminCitiesTests extends BaseTest {
 
         homePage.openAdminPage();
         homePage.selectAdmin();
-        //  adminPage.editCity(cityName);
         adminPage.searchCity(cityName);
 
         String successfullyMessage = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]";

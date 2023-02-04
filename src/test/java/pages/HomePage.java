@@ -48,6 +48,9 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
     private WebElement messageFR;
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]")
+    private WebElement myProfileButton;
+
 
 
     public HomePage(WebDriver driver, WebDriverWait driverWait) {
@@ -93,6 +96,13 @@ public class HomePage extends BasePage{
 
     public String getMessageFR () {
         return messageFR.getText();
+    }
+
+    public void myProfile () {
+        myProfileButton.click();
+    }
+    public void logout() {
+        logoutButton.click();
     }
 
 
