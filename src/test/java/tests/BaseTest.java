@@ -18,7 +18,7 @@ public abstract class BaseTest {
     protected LoginPage loginPage;
     protected HomePage homePage;
     protected AdminPage adminPage;
-    protected Faker faker = new Faker();
+    protected Faker faker;
     protected SignUpPage signUpPage;
 
     protected ProfilePage profilePage;
@@ -34,6 +34,7 @@ public abstract class BaseTest {
         adminPage = new AdminPage(driver, driverWait);
         signUpPage = new SignUpPage(driver, driverWait);
         profilePage = new ProfilePage(driver,driverWait);
+        faker =new Faker();
 
     }
 

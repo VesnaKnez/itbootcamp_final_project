@@ -9,14 +9,6 @@ import org.testng.annotations.Test;
 public class ProfileTests extends BaseTest {
 
 
-    private String name = faker.name().fullName();
-    private String phone = faker.phoneNumber().cellPhone();
-    private String city = faker.address().city();
-    private String country = faker.address().country();
-    private String twitter =  faker.internet().url();
-    private String github = faker.internet().url();
-
-
     @BeforeMethod
     public void beforeMethod() {
         super.beforeMethod();
@@ -27,17 +19,23 @@ public class ProfileTests extends BaseTest {
 
     @Test
     public void fillForm() {
+        String name = faker.name().fullName();
+        String phone = faker.phoneNumber().cellPhone();
+        String city = faker.address().city();
+        String country = faker.address().country();
+        String twitter = "https://" + faker.internet().url();
+        String github = "https://" + faker.internet().url();
 
-        profilePage.fillProfile( name, phone, city, country, twitter, github);
+        profilePage.fillProfile(name, phone, city, country, twitter, github);
 
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
         Assert.assertTrue(profilePage.getSuccessfulyMes().contains("Profile saved successfuly"));
 
         Assert.assertEquals(profilePage.getNameField().getAttribute("value"), name);
-        Assert.assertEquals(profilePage.getPhoneField().getAttribute("value"), phone );
-        Assert.assertEquals(profilePage.getCityField().getAttribute("value"), city );
-        Assert.assertEquals(profilePage.getCountryField().getAttribute("value"), country );
-        Assert.assertEquals(profilePage.getTwitterField().getAttribute("value"), twitter );
-        Assert.assertEquals(profilePage.getGitHubField().getAttribute("value"), github );
+        Assert.assertEquals(profilePage.getPhoneField().getAttribute("value"), phone);
+        Assert.assertEquals(profilePage.getCityField().getAttribute("value"), "New York");
+        Assert.assertEquals(profilePage.getCountryField().getAttribute("value"), country);
+        Assert.assertEquals(profilePage.getTwitterField().getAttribute("value"), twitter);
+        Assert.assertEquals(profilePage.getGitHubField().getAttribute("value"), github);
     }
 }

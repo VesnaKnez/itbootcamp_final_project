@@ -79,7 +79,7 @@ public class LoginTests extends BaseTest {
 
         String actualLink = driver.getCurrentUrl();
         homePage.logout();
-        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")));
+        driverWait.until(ExpectedConditions.urlContains("/login"));
         Assert.assertTrue(driver.getCurrentUrl().contains("/login"));
 
         driver.navigate().refresh();

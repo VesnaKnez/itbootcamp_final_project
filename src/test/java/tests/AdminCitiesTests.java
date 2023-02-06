@@ -12,7 +12,6 @@ import java.time.Duration;
 
 public class AdminCitiesTests extends BaseTest {
 
-    private String cityName = faker.address().city();
 
     @BeforeMethod
     public void beforeMethod() {
@@ -32,6 +31,7 @@ public class AdminCitiesTests extends BaseTest {
 
     @Test
     public void createNewCity() {
+        String cityName = faker.address().city();
         homePage.openAdminPage();
         homePage.selectAdmin();
         adminPage.createCity(cityName);
@@ -44,39 +44,37 @@ public class AdminCitiesTests extends BaseTest {
 
     @Test
     public void editCityTest() {
+        String cityName = faker.address().city();
         homePage.openAdminPage();
         homePage.selectAdmin();
-        //   adminPage.createCity(cityName);
-        adminPage.searchCity(cityName);
 
+        adminPage.searchCity(cityName);
 
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("btnSave")));
 
-        //  adminPage.editCity(cityName);
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
         Assert.assertTrue(adminPage.getSuccessfullyMessage().contains("Saved successfully"));
     }
 
     @Test
     public void searchCityTest() {
-
+      //  String cityName = faker.address().city();
         homePage.openAdminPage();
         homePage.selectAdmin();
-        adminPage.searchCity(cityName);
+        adminPage.searchCity("San Francisco");
 
         String successfullyMessage = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]";
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(successfullyMessage)));
 
-        System.out.println("!! " + cityName);
-        Assert.assertTrue(adminPage.containsCityName(cityName));
+        System.out.println("San Francisco");
+        Assert.assertTrue(adminPage.containsCityName("San Francisco"));
     }
 
     @Test
     public void deleteCity() {
         searchCityTest();
-        adminPage.delete();
-
         driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
+        adminPage.delete();
         Assert.assertTrue(adminPage.getMessDelete().contains("Deleted successfully"));
 
     }

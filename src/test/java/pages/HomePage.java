@@ -15,7 +15,7 @@ public class HomePage extends BasePage{
     @FindBy (xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]/span")
     private WebElement loginButton;
 
-    @FindBy(className = "hidden-sm-and-down")
+    @FindBy(className = "btnLogout")
     private WebElement logoutButton;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[4]/span")

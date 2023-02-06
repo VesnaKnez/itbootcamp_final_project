@@ -25,6 +25,9 @@ public class SignUpPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/div/div/div/div/div[1]/ul/li")
     private WebElement messageExists;
 
+    @FindBy (className= "btnClose")
+    private WebElement messageImportant;
+
 
     public SignUpPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
@@ -59,10 +62,17 @@ public class SignUpPage extends BasePage {
         confirmPasswordField.sendKeys(confirmpass);
 
         signMeUpButton.click();
+        messageImportant.click();
     }
 
     public String getMessageExists() {
         return messageExists.getText();
     }
+
+    public String getMessageImportant() {
+        return messageImportant.getText();
+    }
+
+
 }
 

@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -50,7 +51,7 @@ public class AdminPage extends BasePage {
     @FindBy(id = "delete")
     private WebElement deleteButton;
 
-    @FindBy(xpath = " //*[@id=\"app\"]/div[6]/div/div/div[2]/button[2]")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[6]/div/div/div[2]/button[2]")
     private WebElement deleteD;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")
@@ -74,13 +75,6 @@ public class AdminPage extends BasePage {
         return successfullyMessage.getText();
     }
 
-  /*  public void editCity(String cityName) {
-        editButton.click();
-        editName.sendKeys("-edited");
-
-        saveEditButton.click();
-        cancelEditButton.click();
-    }*/
 
     public String getField() {
         return textInFiled.getText();
@@ -89,7 +83,8 @@ public class AdminPage extends BasePage {
     public boolean containsCityName(String cityName) {
 
         for (WebElement tr : tableCity) {
-            WebElement td2 = tr.findElement(By.className("text-left"));
+            driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr")));
+            WebElement td2 = tr.findElement(By.xpath("/html/body/div/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr[1]/td[2]"));
             System.out.println(td2.getText());
             if (!td2.getText().contains(cityName)) {
                 return false;
@@ -106,6 +101,7 @@ public class AdminPage extends BasePage {
 
         searchLine.sendKeys(cityName);
         editButton.click();
+
         editName.sendKeys("-edited");
 
         saveEditButton.click();
@@ -114,10 +110,12 @@ public class AdminPage extends BasePage {
 
     public void delete() {
         deleteButton.click();
+        driverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[9]/div/div/div[2]/button[2]")));
         deleteD.click();
 
     }
-    public String getMessDelete () {
+
+    public String getMessDelete() {
         return messageDelete.getText();
     }
 }
