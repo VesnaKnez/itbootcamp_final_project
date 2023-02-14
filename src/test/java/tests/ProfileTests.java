@@ -21,7 +21,7 @@ public class ProfileTests extends BaseTest {
     public void fillForm() {
         String name = faker.name().fullName();
         String phone = faker.phoneNumber().cellPhone();
-        String city = faker.address().city();
+        String city = "New York";
         String country = faker.address().country();
         String twitter = "https://" + faker.internet().url();
         String github = "https://" + faker.internet().url();

@@ -53,7 +53,7 @@ public class SignUpTests extends BaseTest {
 
     @Test
     public void signUpTest() {
-        signUpPage.signUp1("Vesna Knezevic", "vesnaaaa@gmail.com", "123456", "123456");
+        signUpPage.signUp1("Vesna Knezevic", "vesnaaaaa@gmail.com", "123456", "123456");
 
         WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]")));

@@ -62,7 +62,7 @@ public class ProfilePage extends BasePage {
 
     }
 
-    public void pickCity(String city) {
+    public void pickCity() {
 
         cityField.click();
         cityField.sendKeys(Keys.CONTROL + "a");
@@ -78,7 +78,7 @@ public class ProfilePage extends BasePage {
 
         phoneField.sendKeys(phone);
 
-        pickCity(city);
+        pickCity();
 
         countryField.sendKeys(country);
 

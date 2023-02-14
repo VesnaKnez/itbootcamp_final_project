@@ -9,7 +9,6 @@ public abstract class BasePage {
         protected WebDriver driver;
         protected WebDriverWait driverWait;
 
-        protected Faker faker = new Faker();
 
         public BasePage(WebDriver driver, WebDriverWait driverWait) {
             this.driver = driver;
